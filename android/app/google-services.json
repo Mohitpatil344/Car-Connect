@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "418416658942",
+    "project_id": "carconnect-bbb35",
+    "storage_bucket": "carconnect-bbb35.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418416658942:android:39159049c7bbc721ff98af",
+        "android_client_info": {
+          "package_Name": "com.example.proj1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "418416658942-84bvb2mpmm5e531fk4nb2bfk35dfa3u0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVkuM-C5ftvFa0Neu897G52I5MxBCejUY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "418416658942-84bvb2mpmm5e531fk4nb2bfk35dfa3u0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
