@@ -21,7 +21,13 @@ class _BudgetPageState extends State<BudgetPage> {
 
   String? carName, carType;
   double? exShowroomPrice, totalCost, loanEMI, totalLoanPayment;
-  double gst = 0, cess = 0, roadTax = 0, insurance = 0, registration = 0, fastag = 500, accessories = 20000;
+  double gst = 0,
+      cess = 0,
+      roadTax = 0,
+      insurance = 0,
+      registration = 0,
+      fastag = 500,
+      accessories = 20000;
 
   @override
   void initState() {
@@ -43,8 +49,11 @@ class _BudgetPageState extends State<BudgetPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Car Budget & Loan Calculator'),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.black, // Dark background
+        title: const Text(
+          'Car Budget & Loan Calculator',
+          style: TextStyle(color: Colors.white), // White text
+        ),
       ),
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
@@ -53,11 +62,17 @@ class _BudgetPageState extends State<BudgetPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildInputField(_carNameController, 'Car Name'),
-            _buildInputField(_priceController, 'Ex-Showroom Price (₹)/Your estimated price', isNumeric: true),
+            _buildInputField(
+                _priceController, 'Ex-Showroom Price (₹)/Your estimated price',
+                isNumeric: true),
             _buildDropdownField(),
-            _buildInputField(_interestController, 'Interest Rate (%)', isNumeric: true),
-            _buildInputField(_durationController, 'Loan Duration (Years)', isNumeric: true),
-            _buildInputField(_downPaymentController, 'Down Payment (₹, Optional)', isNumeric: true),
+            _buildInputField(_interestController, 'Interest Rate (%)',
+                isNumeric: true),
+            _buildInputField(_durationController, 'Loan Duration (Years)',
+                isNumeric: true),
+            _buildInputField(
+                _downPaymentController, 'Down Payment (₹, Optional)',
+                isNumeric: true),
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: _calculateTotalCost,
@@ -82,14 +97,23 @@ class _BudgetPageState extends State<BudgetPage> {
       dropdownColor: Colors.black,
       style: const TextStyle(color: Colors.white),
       decoration: _inputDecoration('Select Car Type'),
-      items: ['Small Car', 'Mid-Size Car', 'SUV', 'Electric Vehicle (EV)', 'Luxury Car (₹20L+)']
-          .map((type) => DropdownMenuItem(value: type, child: Text(type, style: const TextStyle(color: Colors.white))))
+      items: [
+        'Small Car',
+        'Mid-Size Car',
+        'SUV',
+        'Electric Vehicle (EV)',
+        'Luxury Car (₹20L+)'
+      ]
+          .map((type) => DropdownMenuItem(
+              value: type,
+              child: Text(type, style: const TextStyle(color: Colors.white))))
           .toList(),
       onChanged: (value) => setState(() => carType = value),
     );
   }
 
-  Widget _buildInputField(TextEditingController controller, String label, {bool isNumeric = false}) {
+  Widget _buildInputField(TextEditingController controller, String label,
+      {bool isNumeric = false}) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: TextField(
@@ -157,7 +181,14 @@ class _BudgetPageState extends State<BudgetPage> {
     }
 
     // Calculate total on-road cost
-    totalCost = exShowroomPrice! + gst + cess + roadTax + insurance + registration + fastag + accessories;
+    totalCost = exShowroomPrice! +
+        gst +
+        cess +
+        roadTax +
+        insurance +
+        registration +
+        fastag +
+        accessories;
 
     // Calculate Loan EMI & Total Loan Cost
     double loanAmount = totalCost! - downPayment;
@@ -177,11 +208,17 @@ class _BudgetPageState extends State<BudgetPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Breakdown for $carName ($carType)', style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
-        _buildCostRow('Total On-Road Price (Without Loan)', totalCost!, isTotal: true),
+        Text('Breakdown for $carName ($carType)',
+            style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold)),
+        _buildCostRow('Total On-Road Price (Without Loan)', totalCost!,
+            isTotal: true),
         if (loanEMI != null && totalLoanPayment != null) ...[
           _buildCostRow('Monthly EMI', loanEMI!, isTotal: true),
-          _buildCostRow('Total Cost with Loan & Interest', totalLoanPayment!, isTotal: true),
+          _buildCostRow('Total Cost with Loan & Interest', totalLoanPayment!,
+              isTotal: true),
         ],
       ],
     );
@@ -193,8 +230,16 @@ class _BudgetPageState extends State<BudgetPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: TextStyle(color: Colors.white, fontSize: isTotal ? 18 : 16, fontWeight: isTotal ? FontWeight.bold : FontWeight.normal)),
-          Text('₹${amount.toStringAsFixed(2)}', style: TextStyle(color: Colors.white, fontSize: isTotal ? 18 : 16, fontWeight: isTotal ? FontWeight.bold : FontWeight.normal)),
+          Text(title,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: isTotal ? 18 : 16,
+                  fontWeight: isTotal ? FontWeight.bold : FontWeight.normal)),
+          Text('₹${amount.toStringAsFixed(2)}',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: isTotal ? 18 : 16,
+                  fontWeight: isTotal ? FontWeight.bold : FontWeight.normal)),
         ],
       ),
     );
@@ -206,7 +251,8 @@ class _BudgetPageState extends State<BudgetPage> {
       builder: (context) {
         return AlertDialog(
           backgroundColor: Colors.black,
-          title: Text('Detailed Cost Breakdown for $carName ($carType)', style: const TextStyle(color: Colors.white)),
+          title: Text('Detailed Cost Breakdown for $carName ($carType)',
+              style: const TextStyle(color: Colors.white)),
           content: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -221,7 +267,10 @@ class _BudgetPageState extends State<BudgetPage> {
                 _buildCostRow('Accessories', accessories),
                 _buildCostRow('Total On-Road Price', totalCost!, isTotal: true),
                 if (loanEMI != null && totalLoanPayment != null) ...[
-                  _buildCostRow('Loan Amount', totalCost! - (double.tryParse(_downPaymentController.text) ?? 0)),
+                  _buildCostRow(
+                      'Loan Amount',
+                      totalCost! -
+                          (double.tryParse(_downPaymentController.text) ?? 0)),
                   _buildCostRow('Monthly EMI', loanEMI!),
                   _buildCostRow('Total Loan Payment', totalLoanPayment!),
                 ],

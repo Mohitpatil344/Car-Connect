@@ -102,23 +102,23 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                style: const TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  hintText: "Search for your car e.g. Creta",
-                  hintStyle: TextStyle(color: Colors.white60),
-                  filled: true,
-                  fillColor: Colors.grey[900],
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none,
-                  ),
-                  prefixIcon: Icon(Icons.search, color: Colors.white60),
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(16.0),
+            //   child: TextField(
+            //     style: const TextStyle(color: Colors.white),
+            //     decoration: InputDecoration(
+            //       // hintText: "Search for your car e.g. Creta",
+            //       hintStyle: TextStyle(color: Colors.white60),
+            //       filled: true,
+            //       fillColor: Colors.grey[900],
+            //       border: OutlineInputBorder(
+            //         borderRadius: BorderRadius.circular(10),
+            //         borderSide: BorderSide.none,
+            //       ),
+            //       prefixIcon: Icon(Icons.search, color: Colors.white60),
+            //     ),
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(

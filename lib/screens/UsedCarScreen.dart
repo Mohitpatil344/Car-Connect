@@ -90,16 +90,15 @@ class _UsedCarScreenState extends State<UsedCarScreen> {
   Widget _buildFindCarButton() {
     return ElevatedButton(
       onPressed: () {
-Navigator.push(
-  context,
-  MaterialPageRoute(
-    builder: (context) => FilteredUsedCarsScreen(
-      minPrice: 0,
-      maxPrice: 5000000,
-    ),
-  ),
-);
-
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => FilteredUsedCarsScreen(
+              minPrice: (_budgetRange.start * 100000).toInt(),
+              maxPrice: (_budgetRange.end * 100000).toInt(),
+            ),
+          ),
+        );
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.white,
